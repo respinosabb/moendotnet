@@ -14,9 +14,9 @@ namespace MoenDotNet.Controllers
         }
 
         public IActionResult Index()
-        {
-            Console.WriteLine("HI!!!!");
-            return View();
+        {            
+            return new RedirectResult("/cdctest");
+            //return View();
         }
 
         public IActionResult Privacy()
