@@ -1,8 +1,73 @@
 ﻿@{
     ViewData["Title"] = "SAP CDC Test";
 }
-<script type="text/javascript" lang="javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apikey=4_WaSna4VYLJEXpgg_JEGwiA"></script>
+@{
+/*
 
+https://accounts.us1.gigya.com/accounts.getScreenSets?screenSetIDs=Moen-RegistrationLogin&include=html%2Ccss%2Cjavascript%2Ctranslations%2C&lang=en&APIKey=4_f-M18WU1TJjgxNP7oKizbw&source=showScreenSet&sdk=js_latest&pageURL=https%3A%2F%2Fwww.moen.com%2F&sdkBuild=15877&format=json&httpStatusCodes=true
+https://accounts.us1.gigya.com/accounts.getScreenSets?screenSetIDs=Moen-RegistrationLogin&include=html%2Ccss%2Cjavascript%2Ctranslations%2C&lang=en&APIKey=4_f-M18WU1TJjgxNP7oKizbw&source=showScreenSet&sdk=js_latest&pageURL=https%3A%2F%2Fwww.moen.com%2F&sdkBuild=15877&format=json&httpStatusCodes=true
+
+TODO:
+- How does the pulled in pages know you're logged in? Do you have to login via the CDC SDK in order to use CDC pages?
+- Will this not work if we login via MiniOrange/Shopify, then use the CDC SDK.
+
+Screenset IDs:
+- Moen-ProfileUpdate (OK) - My Account -> Personal Details
+- Moen-RegistrationLogin - Create New Account
+
+
+
+*/
+
+
+}
 <div class="text-center">
-    <h1 class="display-4">We</h1>
+    <h1 class="display-4">SAP CDC Test Page</h1>
 </div>
+
+<script>
+    var screenSetId = 'Moen-RegistrationLogin';
+    //var screenSetId = 'Moen-ProfileUpdate';
+
+    function showScreenSetInfo(response) {
+        //alert(JSON.stringify(response));
+        console.log(response)
+    }
+
+    var __gigyaConf = {
+        onGigyaServiceReady: function () { 
+            gigya.accounts.addEventHandlers({
+                onLogin: function(r) {
+                    console.log('onLogin');
+                    // User is logged in
+                },
+                onLogout: function(r) {
+                    console.log('onLogout');
+                    // User is logged out
+                }
+            });
+            gigya.accounts.session.verify({callback:function(response) {
+                    debugger;
+                    if(response.errorCode == 0) {
+                            gigya.accounts.showScreenSet({screenSet:screenSetId});
+                    } else {
+                            gigya.accounts.showScreenSet({screenSet:screenSetId});
+                    }
+            }});
+        }
+    };    
+
+    $( document ).ready(function() {
+        //console.log( "ready!" );
+
+        var screenSetParams = {
+            //include: 'Moen-RegistrationLogin',
+            //include: 'Moen-ProfileUpdate',
+            include: screenSetId,
+            callback: showScreenSetInfo
+        }
+        // Get information about the screenset
+        // gigya.accounts.getScreenSets(screenSetParams);
+    });
+</script>
+<script type="text/javascript" lang="javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apikey=4_WaSna4VYLJEXpgg_JEGwiA"></script>

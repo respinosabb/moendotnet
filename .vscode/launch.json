@@ -6,7 +6,6 @@
     "configurations": [
         {
             "command": "npm start",
-            "cwd":"${workspaceFolder}",
             "name": "Start Site",
             "request": "launch",
             "type": "node-terminal"

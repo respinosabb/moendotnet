@@ -21,6 +21,10 @@ namespace MoenDotNet.Controllers
     - Put the API key in appsettings
     - Put the screenset ID in constants or app settings
     - Move all this to Shopify
+
+
+    https://accounts.us1.gigya.com/accounts.getScreenSets?screenSetIDs=Moen-ProfileUpdate&include=html%2Ccss%2Cjavascript%2Ctranslations%2C&lang=en&APIKey=4_f-M18WU1TJjgxNP7oKizbw&source=showScreenSet&sdk=js_latest&pageURL=https%3A%2F%2Fwww.moen.com%2F&sdkBuild=15877&format=json&httpStatusCodes=true
+
     */
 
 
