@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "dotnet build",
+    "clean": "dotnet clean",
     "start": "dotnet run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
